@@ -58,13 +58,11 @@ public class Player {
             return;
         }
 
-        // Lands on chance / community chest
+//         Lands on chance / community chest
         if (space instanceof CardSpace) {
             if (((CardSpace) space).getType().equals("chance")) {
-                Board.chanceCards--;
                 return;
             }
-            Board.communityChestCards--;
             return;
         }
 

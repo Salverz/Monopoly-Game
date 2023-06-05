@@ -12,6 +12,7 @@ public class Game {
     public static void main(String[] args) throws Exception {
 
         Board.createSpaces();
+        Board.createCards();
         ArrayList<Player> players = new ArrayList<>();
 
         System.out.print("Number of players: ");

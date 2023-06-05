@@ -1,0 +1,168 @@
+[
+  {
+    "description": "Go to Jail.",
+    "type": "jail"
+  },
+  {
+    "description": "Advance to Boardwalk.",
+    "type": "advance",
+    "multiplier": 1,
+    "target": 39
+  },
+  {
+    "description": "Advance to Go.",
+    "type": "advance",
+    "multiplier": 1,
+    "target": 0
+  },
+  {
+    "description": "Advance to Illinois Avenue.",
+    "type": "advance",
+    "multiplier": 1,
+    "target": 24
+  },
+  {
+    "description": "Advance to St. Charles Place.",
+    "type": "advance",
+    "multiplier": 1,
+    "target": 11
+  },
+  {
+    "description": "Take a trip to Reading Railroad.",
+    "type": "advance",
+    "multiplier": 1,
+    "target": 5
+  },
+  {
+    "description": "Go back three spaces.",
+    "type": "advance_nearest",
+    "multiplier": 1,
+    "target": "three_spaces"
+  },
+  {
+    "description": "Advance to the next railroad. If owned, pay twice the rent.",
+    "type": "advance_nearest",
+    "multiplier": 2,
+    "target": "railroad"
+  },
+  {
+    "description": "Advance to the next railroad. If owned, pay twice the rent.",
+    "type": "advance_nearest",
+    "multiplier": 2,
+    "target": "railroad"
+  },
+  {
+    "description": "Advance to the nearest utility. If owned, pay ten times your roll.",
+    "type": "advance_nearest",
+    "multiplier": 10,
+    "target": "utility"
+  },
+  {
+    "description": "You have been elected chairman of the board. Pay each player $50.",
+    "type": "pay_each",
+    "amount": 50
+  },
+  {
+    "description": "Make general repairs on all your property $25, $100",
+    "type": "repairs",
+    "amount": [25, 100]
+  },
+  {
+    "description": "Speeding fine. Pay $15.",
+    "type": "pay",
+    "amount": 15
+  },
+  {
+    "description": "Your building loan matures. Collect $150",
+    "type": "receive",
+    "amount": 150
+  },
+  {
+    "description": "Bank pays you dividend of $50.",
+    "type": "receive",
+    "amount": 50
+  },
+  {
+    "description": "Get out of jail free.",
+    "type": "jail_free"
+  },
+  {
+    "description": "Advance to Go.",
+    "type": "advance",
+    "multiplier": 1,
+    "target": 0
+  },
+  {
+    "description": "Go to jail.",
+    "type": "jail"
+  },
+  {
+    "description": "It's your birthday. Collect $10 from each player.",
+    "type": "receive_each",
+    "amount": 10
+  },
+  {
+    "description": "Make general repairs on all your property $40, $115",
+    "type": "repairs",
+    "amount": [40, 115]
+  },
+  {
+    "description": "Hospital fees. Pay $100.",
+    "type": "pay",
+    "amount": 100
+  },
+  {
+    "description": "School fees. Pay $50.",
+    "type": "pay",
+    "amount": 50
+  },
+  {
+    "description": "Doctor's fees. Pay $50.",
+    "type": "pay",
+    "amount": 50
+  },
+  {
+    "description": "You have won second prize in a beauty contest. Collect $10.",
+    "type": "receive",
+    "amount": 10
+  },
+  {
+    "description": "Collect $25 consultancy fee.",
+    "type": "receive",
+    "amount": 25
+  },
+  {
+    "description": "You inherit $100.",
+    "type": "receive",
+    "amount": 100
+  },
+  {
+    "description": "From sale of stock, you get $50.",
+    "type": "receive",
+    "amount": 50
+  },
+  {
+    "description": "Bank error in your favor. Collect $200.",
+    "type": "receive",
+    "amount": 200
+  },
+  {
+    "description": "Holiday fund matures. Collect $100.",
+    "type": "receive",
+    "amount": 100
+  },
+  {
+    "description": "Life insurance matures. Collect $100.",
+    "type": "receive",
+    "amount": 100
+  },
+  {
+    "description": "Income tax refund. Collect $20.",
+    "type": "receive",
+    "amount": 20
+  },
+  {
+    "description": "Get out of jail free.",
+    "type": "jail_free"
+  }
+]
