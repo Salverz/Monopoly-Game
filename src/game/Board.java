@@ -25,7 +25,7 @@ public class Board {
         return spaces.get(position);
     }
 
-    public static ArrayList<Space> spaceSearch(String spaceName) {
+    public static Space spaceSearch(String spaceName) {
         spaceName = spaceName.toLowerCase();
         String[] words = spaceName.split("\\s+");
         ArrayList<Space> results = new ArrayList<>();
@@ -55,14 +55,14 @@ public class Board {
             }
         }
         if (results.size() == 1) {
-            return results;
+            return results.get(0);
         }
         return null;
     }
 
     public static void createSpaces() throws Exception {
         spaces = new ArrayList<>();
-        JSONArray spacesJson = (JSONArray) new JSONParser().parse(new FileReader("C:\\Users\\David\\IdeaProjects\\MonopolyAI\\src\\game\\spaces.json"));
+        JSONArray spacesJson = (JSONArray) new JSONParser().parse(new FileReader("C:\\Users\\david\\IdeaProjects\\MonopolyAI\\src\\game\\spaces.json"));
 
         for (int i = 0; i < 40; i++) {
             JSONObject space = (JSONObject) spacesJson.get(i);
@@ -96,7 +96,7 @@ public class Board {
         chanceCards = new ArrayList<>();
         communityChestCards = new ArrayList<>();
 
-        JSONArray cardsJson = (JSONArray) new JSONParser().parse(new FileReader("C:\\Users\\David\\IdeaProjects\\MonopolyAI\\src\\game\\cards.json"));
+        JSONArray cardsJson = (JSONArray) new JSONParser().parse(new FileReader("C:\\Users\\david\\IdeaProjects\\MonopolyAI\\src\\game\\cards.json"));
         for (int i = 0; i < 32; i++) {
             Card card = null;
             JSONObject currentCard = (JSONObject) cardsJson.get(i);
@@ -105,10 +105,10 @@ public class Board {
             int multiplier = 0, target = 0, amount = 0;
             String nearestTarget = "";
             if (type.equals("advance")) {
-                multiplier = (int) (long) currentCard.get("multiplier");
                 target = (int) (long) currentCard.get("target");
             }
             if (type.equals("advance_nearest")) {
+                multiplier = (int) currentCard.get("multiplier");
                 nearestTarget = (String) currentCard.get("target");
             }
 
@@ -118,7 +118,7 @@ public class Board {
 
             switch (type) {
                 case "advance":
-                    card = new AdvanceCard(description, type, multiplier, target);
+                    card = new AdvanceCard(description, type, target);
                     break;
                 case "advance_nearest":
                     card = new AdvanceNearestCard(description, type, multiplier, nearestTarget);

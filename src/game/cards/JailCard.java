@@ -10,7 +10,6 @@ public class JailCard extends Card implements CardInterface {
 
     @Override
     public void cardAction(Player player) {
-        System.out.println(player + " is in jail");
         player.setInJail(true);
     }
 }

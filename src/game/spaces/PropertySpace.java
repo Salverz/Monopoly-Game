@@ -54,14 +54,10 @@ public class PropertySpace extends Space {
 
     public void setRentLevel(int rentLevel) { this.rentLevel = rentLevel; }
 
-    public int getRent(int roll) {
+    public int getRent() {
         if (isMortgaged) {
             System.out.println(getName() + " is mortgaged");
             return 0;
-        }
-
-        if (setId == 9) { // Utility
-            return rents[rentLevel] * roll;
         }
 
         return rents[rentLevel];

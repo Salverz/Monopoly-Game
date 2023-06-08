@@ -6,56 +6,51 @@
   {
     "description": "Advance to Boardwalk.",
     "type": "advance",
-    "multiplier": 1,
     "target": 39
   },
   {
     "description": "Advance to Go.",
     "type": "advance",
-    "multiplier": 1,
     "target": 0
   },
   {
     "description": "Advance to Illinois Avenue.",
     "type": "advance",
-    "multiplier": 1,
     "target": 24
   },
   {
     "description": "Advance to St. Charles Place.",
     "type": "advance",
-    "multiplier": 1,
     "target": 11
   },
   {
     "description": "Take a trip to Reading Railroad.",
     "type": "advance",
-    "multiplier": 1,
     "target": 5
   },
   {
     "description": "Go back three spaces.",
     "type": "advance_nearest",
     "multiplier": 1,
-    "target": "three_spaces"
+    "target": [37]
   },
   {
     "description": "Advance to the next railroad. If owned, pay twice the rent.",
     "type": "advance_nearest",
     "multiplier": 2,
-    "target": "railroad"
+    "target": [5, 15, 25, 35]
   },
   {
     "description": "Advance to the next railroad. If owned, pay twice the rent.",
     "type": "advance_nearest",
     "multiplier": 2,
-    "target": "railroad"
+    "target": [5, 15, 25, 35]
   },
   {
     "description": "Advance to the nearest utility. If owned, pay ten times your roll.",
     "type": "advance_nearest",
     "multiplier": 10,
-    "target": "utility"
+    "target": [12, 28]
   },
   {
     "description": "You have been elected chairman of the board. Pay each player $50.",
@@ -89,7 +84,6 @@
   {
     "description": "Advance to Go.",
     "type": "advance",
-    "multiplier": 1,
     "target": 0
   },
   {
