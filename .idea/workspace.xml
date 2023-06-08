@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18a54f9e-92fe-4142-b2cd-1c3b2ce3a46b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/AdvanceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/AdvanceCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/AdvanceNearestCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/AdvanceNearestCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/CardInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/CardInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/JailCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/JailCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/JailFreeCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/JailFreeCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/PayCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/PayCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/PayEachCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/PayEachCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/ReceiveCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/ReceiveCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/ReceiveEachCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/ReceiveEachCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/cards/RepairsCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/RepairsCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/spaces.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/spaces.json" afterDir="false" />
-    </list>
+    <list default="true" id="18a54f9e-92fe-4142-b2cd-1c3b2ce3a46b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,5 +88,9 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
