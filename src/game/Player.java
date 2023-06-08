@@ -6,6 +6,7 @@ import game.spaces.PropertySpace;
 import game.spaces.TaxSpace;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player {
     private final String name;
@@ -15,6 +16,7 @@ public class Player {
     private boolean inJail;
     private int jailTurnsRemaining;
     private int currentRoll;
+    private int getOutOfJailFreeCards;
 
     public Player(String name) {
         this.name = name;
@@ -39,6 +41,10 @@ public class Player {
         handleSpaceAction(Board.getSpace(position));
     }
 
+    public void moveTo(String space) {
+//        if (space.equals("Go"))
+    }
+
     private void handleSpaceAction(Space space) {
         // Is in jail
 
@@ -58,12 +64,27 @@ public class Player {
             return;
         }
 
-//         Lands on chance / community chest
+        // Lands on chance / community chest
         if (space instanceof CardSpace) {
+            System.out.println("Choose the card that was drawn: ");
             if (((CardSpace) space).getType().equals("chance")) {
+                for (int i = 0; i < Board.chanceCards.size(); i++) {
+                    System.out.println("\t(" + (i + 1) + ") " + Board.chanceCards.get(i));
+                }
+            } else {
+                for (int i = 0; i < Board.communityChestCards.size(); i++) {
+                    System.out.println("\t(" + (i + 1) + ") " + Board.communityChestCards.get(i));
+                }
+            }
+
+            Scanner kb = new Scanner(System.in);
+            int card = kb.nextInt();
+
+            if (((CardSpace) space).getType().equals("chance")) {
+                Board.chanceCards.get(card - 1).cardAction(this);
                 return;
             }
-            return;
+            Board.communityChestCards.get(card - 1).cardAction(this);
         }
 
         // Lands on an owned property
@@ -178,9 +199,15 @@ public class Player {
 
     public int getJailTurnsRemaining() { return jailTurnsRemaining; }
 
+    public void setGetOutOfJailFreeCards(int getOutOfJailFreeCards) {
+        this.getOutOfJailFreeCards = getOutOfJailFreeCards;
+    }
+
     public void reduceJailTurnsRemaining() { jailTurnsRemaining--; }
 
     public boolean isInJail() { return inJail; }
+
+    public int getGetOutOfJailFreeCards() { return getOutOfJailFreeCards; }
 
     public void setInJail(boolean inJail) {
         this.inJail = inJail;

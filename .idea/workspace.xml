@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="18a54f9e-92fe-4142-b2cd-1c3b2ce3a46b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/AdvanceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/AdvanceCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/AdvanceNearestCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/AdvanceNearestCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/CardInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/CardInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/JailCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/JailCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/JailFreeCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/JailFreeCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/PayCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/PayCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/PayEachCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/PayEachCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/ReceiveCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/ReceiveCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/ReceiveEachCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/ReceiveEachCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/cards/RepairsCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/cards/RepairsCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/spaces.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/spaces.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Qf00JLCsFOlLMIDbbczA8FFdhz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/David/IdeaProjects/MonopolyAI&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\David\IdeaProjects\MonopolyAI\src\game" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Game">
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="game.Game" />
+      <module name="MonopolyAI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="MonopolyAI" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Game" />
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="18a54f9e-92fe-4142-b2cd-1c3b2ce3a46b" name="Changes" comment="" />
+      <created>1685729106328</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1685729106328</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+</project>

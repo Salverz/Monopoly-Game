@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Board {
     public static int houses = 32, hotels = 12;
@@ -24,10 +25,44 @@ public class Board {
         return spaces.get(position);
     }
 
+    public static ArrayList<Space> spaceSearch(String spaceName) {
+        spaceName = spaceName.toLowerCase();
+        String[] words = spaceName.split("\\s+");
+        ArrayList<Space> results = new ArrayList<>();
+
+        for (int i = 0; i < spaces.size(); i++) {
+            int matchingWords = 0;
+            for (int j = 0; j < words.length; j++) {
+                String space = spaces.get(i).toString().toLowerCase();
+                String[] spaceWords = space.split("\\s+");
+                if (j >= spaceWords.length) {
+                    break;
+                }
+                int smallerWord = Math.min(words[j].length(), spaceWords[j].length());
+                boolean wordMatches = true;
+                for (int k = 0; k < smallerWord; k++) {
+                    if (spaceWords[j].charAt(k) != words[j].charAt(k)) {
+                        wordMatches = false;
+                        break;
+                    }
+                }
+                if (wordMatches) {
+                    matchingWords++;
+                }
+            }
+            if (matchingWords == words.length) {
+                results.add(spaces.get(i));
+            }
+        }
+        if (results.size() == 1) {
+            return results;
+        }
+        return null;
+    }
 
     public static void createSpaces() throws Exception {
         spaces = new ArrayList<>();
-        JSONArray spacesJson = (JSONArray) new JSONParser().parse(new FileReader("C:\\Users\\david\\Desktop\\MonopolyAI\\src\\game\\spaces.json"));
+        JSONArray spacesJson = (JSONArray) new JSONParser().parse(new FileReader("C:\\Users\\David\\IdeaProjects\\MonopolyAI\\src\\game\\spaces.json"));
 
         for (int i = 0; i < 40; i++) {
             JSONObject space = (JSONObject) spacesJson.get(i);
@@ -61,7 +96,7 @@ public class Board {
         chanceCards = new ArrayList<>();
         communityChestCards = new ArrayList<>();
 
-        JSONArray cardsJson = (JSONArray) new JSONParser().parse(new FileReader("C:\\Users\\david\\Desktop\\MonopolyAI\\src\\game\\cards.json"));
+        JSONArray cardsJson = (JSONArray) new JSONParser().parse(new FileReader("C:\\Users\\David\\IdeaProjects\\MonopolyAI\\src\\game\\cards.json"));
         for (int i = 0; i < 32; i++) {
             Card card = null;
             JSONObject currentCard = (JSONObject) cardsJson.get(i);

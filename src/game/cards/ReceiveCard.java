@@ -1,6 +1,7 @@
 package game.cards;
 
 import game.Card;
+import game.Player;
 
 public class ReceiveCard extends Card implements CardInterface {
     private int amount;
@@ -11,7 +12,7 @@ public class ReceiveCard extends Card implements CardInterface {
     }
 
     @Override
-    public void cardAction() {
+    public void cardAction(Player player) {
 
     }
 }

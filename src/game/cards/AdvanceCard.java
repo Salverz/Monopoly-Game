@@ -1,6 +1,7 @@
 package game.cards;
 
 import game.Card;
+import game.Player;
 
 public class AdvanceCard extends Card implements CardInterface {
     private int multiplier;
@@ -13,7 +14,7 @@ public class AdvanceCard extends Card implements CardInterface {
     }
 
     @Override
-    public void cardAction() {
+    public void cardAction(Player player) {
 
     }
 }
