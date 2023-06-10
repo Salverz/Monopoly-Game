@@ -69,7 +69,7 @@ public class Board {
             String name = (String) space.get("name");
             String type = (String) space.get("type");
             switch (type) {
-                case "property":
+                case "property" -> {
                     int price = (int) (long) space.get("price");
                     int setId = (int) (long) space.get("set_id");
                     JSONArray rents = (JSONArray) space.get("rents");
@@ -78,16 +78,13 @@ public class Board {
                         intRents[j] = (int) (long) rents.get(j);
                     }
                     spaces.add(new PropertySpace(name, price, intRents, setId));
-                    break;
-                case "chance", "community_chest":
-                    spaces.add(new CardSpace(name, type));
-                    break;
-                case "tax":
+                }
+                case "chance", "community_chest" -> spaces.add(new CardSpace(name, type));
+                case "tax" -> {
                     int amount = (int) (long) space.get("amount");
                     spaces.add(new TaxSpace(name, amount));
-                    break;
-                default:
-                    spaces.add(new CornerSpace(name, type));
+                }
+                default -> spaces.add(new CornerSpace(name, type));
             }
         }
     }
@@ -102,53 +99,54 @@ public class Board {
             JSONObject currentCard = (JSONObject) cardsJson.get(i);
             String description = (String) currentCard.get("description");
             String type = (String) currentCard.get("type");
-            int multiplier = 0, target = 0, amount = 0;
-            String nearestTarget = "";
-            if (type.equals("advance")) {
-                target = (int) (long) currentCard.get("target");
-            }
-            if (type.equals("advance_nearest")) {
-                multiplier = (int) currentCard.get("multiplier");
-                nearestTarget = (String) currentCard.get("target");
-            }
-
-            if (type.equals("pay") || type.equals("pay_each") || type.equals("receive") || type.equals("receive_each")) {
-                amount = (int) (long) currentCard.get("amount");
-            }
+            int amount = 0;
 
             switch (type) {
-                case "advance":
+                case "advance" -> {
+                    int target = (int) (long) currentCard.get("target");
                     card = new AdvanceCard(description, type, target);
-                    break;
-                case "advance_nearest":
-                    card = new AdvanceNearestCard(description, type, multiplier, nearestTarget);
-                    break;
-                case "jail":
-                    card = new JailCard(description, type);
-                    break;
-                case "jail_free":
-                    card = new JailFreeCard(description, type);
-                    break;
-                case "pay":
-                    card = new PayCard(description, type, amount);
-                    break;
-                case "pay_each":
-                    card = new PayEachCard(description, type, amount);
-                    break;
-                case "receive":
-                    card = new ReceiveCard(description, type, amount);
-                    break;
-                case "receive_each":
-                    card = new ReceiveEachCard(description, type, amount);
-                    break;
-                case "repairs":
+                }
+                case "advance_nearest" -> {
+                    int multiplier = (int) currentCard.get("multiplier");
+                    JSONArray targets = (JSONArray) currentCard.get("target");
+                    int[] intTargets = new int[targets.size()];
+                    for (int j = 0; j < targets.size(); j++) {
+                        intTargets[j] = (int) targets.get(j);
+                    }
+                    card = new AdvanceNearestCard(description, type, multiplier, intTargets);
+                }
+                case "jail" -> card = new JailCard(description, type);
+                case "jail_free" -> card = new JailFreeCard(description, type);
+                case "repairs" -> {
                     JSONArray amounts = (JSONArray) currentCard.get("amount");
                     int[] amountsArray = new int[amounts.size()];
                     for (int j = 0; j < amounts.size(); j++) {
                         amountsArray[j] = (int) (long) amounts.get(j);
                     }
                     card = new RepairsCard(description, type, amountsArray);
-                    break;
+                }
+                default -> amount = (int) (long) currentCard.get("amount");
+            }
+
+            card = switch (type) {
+                case "pay" -> new PayCard(description, type, amount);
+                case "pay_each" -> new PayEachCard(description, type, amount);
+                case "receive" -> new ReceiveCard(description, type, amount);
+                case "receive_each" -> new ReceiveEachCard(description, type, amount);
+                default -> card;
+            };
+
+
+
+
+
+            if (type.equals("pay") || type.equals("pay_each") || type.equals("receive") || type.equals("receive_each")) {
+                amount = (int) (long) currentCard.get("amount");
+            }
+
+            switch (type) {
+
+
             }
 
             if (i < 16) {
