@@ -59,7 +59,6 @@ public abstract class Actions {
                 if (!player.spendMoney(50)) {
                     System.out.println(player + " does not have enough money to get out of jail");
                     player.notEnoughMoney(50);
-                    player.spendMoney(50);
                 }
             }
             player.setInJail(false);

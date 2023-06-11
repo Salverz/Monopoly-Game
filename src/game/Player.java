@@ -45,14 +45,13 @@ public class Player {
         move(Math.abs(spaceId - position), true);
     }
 
-    private void handleSpaceAction(Space space) {
+    public void handleSpaceAction(Space space) {
         // Is in jail
 
         // Lands on a tax
         if (space instanceof TaxSpace) {
             if (!spendMoney(((TaxSpace) space).getAmount())) {
                 notEnoughMoney(((TaxSpace) space).getAmount());
-                spendMoney(((TaxSpace) space).getAmount());
             }
             System.out.println("paid " + space.getName() + " of $" + ((TaxSpace) space).getAmount());
             return;
@@ -101,6 +100,7 @@ public class Player {
             System.out.println("need $" + (moneyNeeded - money) + " more");
             Game.runCommand();
         } while (money < moneyNeeded);
+        spendMoney(moneyNeeded);
     }
 
     public void purchaseProperty(PropertySpace property) {
@@ -128,7 +128,6 @@ public class Player {
         if (!spendMoney(property.getRent() * multiplier)) {
             System.out.println(name + " does not have enough money to pay rent");
             notEnoughMoney(property.getRent() * multiplier);
-            spendMoney(property.getRent() * multiplier);
         }
         System.out.println("$" + property.getRent() * multiplier + " paid to " + property.getOwner());
         property.getOwner().receiveMoney(property.getRent() * multiplier);

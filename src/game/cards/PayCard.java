@@ -13,6 +13,10 @@ public class PayCard extends Card implements CardInterface {
 
     @Override
     public void cardAction(Player player) {
-
+        if (!player.spendMoney(amount)) {
+            System.out.println(player + " does not have enough money");
+            player.notEnoughMoney(amount);
+        }
+        System.out.println(player + " paid $" + amount);
     }
 }

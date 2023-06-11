@@ -13,6 +13,7 @@ public class ReceiveCard extends Card implements CardInterface {
 
     @Override
     public void cardAction(Player player) {
-
+        System.out.println(player + " got $" + amount);
+        player.receiveMoney(amount);
     }
 }

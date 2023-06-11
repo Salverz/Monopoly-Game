@@ -7,7 +7,7 @@ import game.Space;
 import game.spaces.PropertySpace;
 
 public class AdvanceCard extends Card implements CardInterface {
-    private int target;
+    private final int target;
 
     public AdvanceCard(String description, String type, int target) {
         super(description, type);

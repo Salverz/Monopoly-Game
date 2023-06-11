@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
+    public static ArrayList<Player> players;
     public static Player currentTurnPlayer;
     private static boolean nextPlayer;
     private static final Scanner kb = new Scanner(System.in);
@@ -13,7 +14,7 @@ public class Game {
 
         Board.createSpaces();
         Board.createCards();
-        ArrayList<Player> players = new ArrayList<>();
+        players = new ArrayList<>();
 
         Scanner kb = new Scanner(System.in);
         while (true) {
