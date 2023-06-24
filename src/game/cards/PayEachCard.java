@@ -20,10 +20,11 @@ public class PayEachCard extends Card implements CardInterface {
         }
 
         for (Player opponent : Game.players) {
-            if (opponent != player) {
-                System.out.println("$" + amount + " paid to " + opponent);
-                opponent.receiveMoney(amount);
+            if (opponent == player) {
+                continue;
             }
+            System.out.println("$" + amount + " paid to " + opponent);
+            opponent.receiveMoney(amount);
         }
     }
 }

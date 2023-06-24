@@ -1,7 +1,8 @@
 
 public class Test {
     public static void main(String[] args) {
-        String test = "St. Charles place";
-        System.out.println(test.toLowerCase());
+        int count = 0;
+        count += 2 - 1;
+        System.out.println(count);
     }
 }

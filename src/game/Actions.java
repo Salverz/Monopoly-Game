@@ -36,6 +36,7 @@ public abstract class Actions {
         player.purchaseProperty((PropertySpace) space);
     }
     public static void jail(Player player) {
+        System.out.println(player + " is in jail");
         player.setInJail(true);
     }
 
@@ -65,13 +66,17 @@ public abstract class Actions {
             System.out.println(player + " is out of jail");
         }
 
-        player.move(amount, true);
+        player.move(amount, true, true);
     }
 
     public static void house(Player player, String propertyName) {
-        PropertySpace property = player.getOwnedPropertyByName(propertyName);
+        Space space = Board.spaceSearch(propertyName);
+        if (!(space instanceof PropertySpace property)) {
+            System.out.println(space + " is not a property");
+            return;
+        }
 
-        if (property == null) {
+        if (property.getOwner() != player) {
             System.out.println(player + " does not own " + propertyName);
             return;
         }
@@ -83,7 +88,7 @@ public abstract class Actions {
         }
 
         if (property.getRentLevel() < 1) {
-            System.out.println(player + " does not own all properties in the set");
+            System.out.println(player + " does not own all unmortgaged properties in the set");
             return;
         }
 
@@ -149,6 +154,64 @@ public abstract class Actions {
         Space space = Board.spaceSearch(spaceName);
         if (space != null && space.getId() >= 0) {
             player.moveTo(space.getId());
+        }
+    }
+
+    public static void trade(Player[] tradingPlayers) {
+        System.out.println("\tfor money, simply type the number");
+        System.out.println("\ttype property names");
+        System.out.println("\t\"jail card\" for a get out of jail free card");
+        System.out.println("\ttype \"end\" to finish each side of deal");
+
+        Scanner kb = new Scanner(System.in);
+        String input = null;
+        for (int i = 0; i < 2; i++) {
+            System.out.println("enter the items " + tradingPlayers[i] + " will give:");
+            do {
+                input = kb.nextLine();
+                String[] inputWords = input.split("\\s+");
+                // Money
+                try {
+                    int amount = Integer.parseInt(inputWords[0]);
+                    if (!tradingPlayers[i].spendMoney(amount)) {
+                        System.out.println(tradingPlayers[i] + " does not have that much money");
+                        continue;
+                    }
+                    System.out.println(tradingPlayers[i] + " gave $" + amount + " to " + tradingPlayers[(i + 1) % 2]);
+                    tradingPlayers[(i + 1) % 2].receiveMoney(amount);
+                } catch (NumberFormatException ignored) {}
+
+                // Get out of jail free cards
+                if (input.equals("jail card") && tradingPlayers[i].getGetOutOfJailFreeCards() > 0) {
+                    System.out.println(tradingPlayers[i] + " gave a get out of jail free card to " + tradingPlayers[(i + 1) % 2]);
+                    tradingPlayers[i].setGetOutOfJailFreeCards(tradingPlayers[i].getGetOutOfJailFreeCards() - 1);
+                    tradingPlayers[(i + 1) % 2].setGetOutOfJailFreeCards(tradingPlayers[(i + 1) % 2].getGetOutOfJailFreeCards() + 1);
+                    return;
+                }
+
+                // Properties
+                Space space = Board.spaceSearch(input);
+                if (space == null) {
+                    System.out.println("unknown trade input");
+                    continue;
+                }
+                if (!(space instanceof PropertySpace tradeProperty)) {
+                    System.out.println(space + " is not a property");
+                    continue;
+                }
+                if (tradeProperty.getOwner() != tradingPlayers[i]) {
+                    System.out.println(tradingPlayers[i] + " does not own " + space);
+                    continue;
+                }
+                if (tradeProperty.getRentLevel() > 1 && tradeProperty.getSetId() != 8) {
+                    System.out.println("cannot trade properties with houses on them");
+                    continue;
+                }
+                System.out.println(tradeProperty + " traded to " + tradingPlayers[(i + 1) % 2]);
+                tradeProperty.setOwner(tradingPlayers[(i + 1) % 2]);
+                tradingPlayers[i].removeProperty(tradeProperty);
+                tradingPlayers[(i + 1) % 2].addProperty(tradeProperty);
+            } while (!input.equals("end"));
         }
     }
 }

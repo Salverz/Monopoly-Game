@@ -1,10 +1,5 @@
 package game;
 
-import game.spaces.PropertySpace;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class CommandHandler {
     public static void handleCommand(String command, Player player) {
         String[] args = command.split("\\s+");
@@ -59,6 +54,16 @@ public class CommandHandler {
 
             case "house":
                 Actions.house(player, deleteFirstWord(args));
+                break;
+
+            case "trade":
+                Player tradingPartner = Game.getPlayerByName(args[1]);
+                if (tradingPartner == null || tradingPartner == player) {
+                    System.out.println("invalid trading partner");
+                    break;
+                }
+
+                Actions.trade(new Player[]{player, tradingPartner});
                 break;
 
             default:

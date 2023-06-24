@@ -16,6 +16,11 @@ public class AdvanceCard extends Card implements CardInterface {
 
     @Override
     public void cardAction(Player player) {
+        if (target == 37) {
+            player.move(target, false, true);
+            return;
+        }
+
         player.moveTo(target);
 
         if (target == 12 || target == 28) {  // Utility
@@ -23,8 +28,10 @@ public class AdvanceCard extends Card implements CardInterface {
         }
 
         Space landedSpace = Board.spaces.get(target);
-        if (landedSpace instanceof PropertySpace) {
-            player.payRent((PropertySpace) landedSpace, 1);
+        if (landedSpace instanceof PropertySpace landedProperty) {
+            if (landedProperty.getOwner() != null && landedProperty.getOwner() != player) {
+                player.payRent((PropertySpace) landedSpace, 1);
+            }
         }
     }
 }

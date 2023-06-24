@@ -7,7 +7,7 @@ import game.Space;
 import game.spaces.PropertySpace;
 
 public class AdvanceNearestCard extends Card implements CardInterface {
-    private int multiplier;
+    private final int multiplier;
     private final int[] target;
 
     public AdvanceNearestCard(String description, String type, int multiplier, int[] target) {
@@ -35,12 +35,23 @@ public class AdvanceNearestCard extends Card implements CardInterface {
         }
         player.moveTo(target[minIndex]);
         Space landedSpace = Board.spaces.get(target[minIndex]);
-        if (landedSpace instanceof PropertySpace) {
-            System.out.println(landedSpace + " is owned by " + ((PropertySpace) landedSpace).getOwner());
-            if (((PropertySpace) landedSpace).getOwner() == player) {
+        if (landedSpace instanceof PropertySpace landedProperty) {
+            if (landedProperty.getOwner() == null) {
                 return;
             }
-            player.payRent((PropertySpace) landedSpace, multiplier);
+            System.out.println(landedProperty + " is owned by " + landedProperty.getOwner());
+            if (landedProperty.getOwner() == player) {
+                return;
+            }
+            if (landedProperty.getSetId() == 9) { // Utility
+                if (landedProperty.getRentLevel() == 0) {
+                    player.payRent(landedProperty, player.getCurrentRoll());
+                    return;
+                }
+                player.payRent(landedProperty, player.getCurrentRoll() * 2.5);
+                return;
+            }
+            player.payRent(landedProperty, multiplier);
             return;
         }
         player.handleSpaceAction(landedSpace);

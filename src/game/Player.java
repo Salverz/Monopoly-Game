@@ -12,7 +12,7 @@ public class Player {
     private final String name;
     private int money;
     private int position;
-    private ArrayList<PropertySpace> properties;
+    private final ArrayList<PropertySpace> properties;
     private boolean inJail;
     private int jailTurnsRemaining;
     private int currentRoll;
@@ -24,7 +24,7 @@ public class Player {
         this.properties = new ArrayList<>();
     }
 
-    public void move(int roll, boolean passGo) {
+    public void move(int roll, boolean passGo, boolean handleSpaceAction) {
         if (jailTurnsRemaining > 0) {
             System.out.println(name + " is in jail for " + jailTurnsRemaining + " more turns");
             return;
@@ -38,11 +38,13 @@ public class Player {
             receiveMoney(200);
         }
         System.out.println("landed on " + Board.getSpace(position).getName());
-        handleSpaceAction(Board.getSpace(position));
+        if (handleSpaceAction) {
+            handleSpaceAction(Board.getSpace(position));
+        }
     }
 
     public void moveTo(int spaceId) {
-        move(Math.abs(spaceId - position), true);
+        move((spaceId - position + 40) % 40, true, false);
     }
 
     public void handleSpaceAction(Space space) {
@@ -59,6 +61,7 @@ public class Player {
 
         // Lands on go to jail
         if (space instanceof CornerSpace && ((CornerSpace) space).getType().equals("to_jail")) {
+            System.out.println(name + " is in jail");
             setInJail(true);
             return;
         }
@@ -90,7 +93,11 @@ public class Player {
         if (space instanceof PropertySpace && ((PropertySpace) space).isOwned()) {
             System.out.println(space + " is owned by " + ((PropertySpace) space).getOwner());
             if (((PropertySpace) space).getOwner() != this) {
-                payRent((PropertySpace) space, 1);
+                int multiplier = 1;
+                if (((PropertySpace) space).getSetId() == 9) { // Utility
+                    multiplier = currentRoll;
+                }
+                payRent((PropertySpace) space, multiplier);
             }
         }
     }
@@ -120,17 +127,14 @@ public class Player {
         property.verifyRentLevel(true);
     }
 
-    public void payRent(PropertySpace property, int multiplier) {
-        if (property.getSetId() == 9) { // Utility
-            multiplier = Math.max(multiplier, property.getRent());
-        }
-
-        if (!spendMoney(property.getRent() * multiplier)) {
+    public void payRent(PropertySpace property, double multiplier) {
+        int amount = (int) Math.round(property.getRent() * multiplier);
+        if (!spendMoney(amount)) {
             System.out.println(name + " does not have enough money to pay rent");
-            notEnoughMoney(property.getRent() * multiplier);
+            notEnoughMoney(amount);
         }
-        System.out.println("$" + property.getRent() * multiplier + " paid to " + property.getOwner());
-        property.getOwner().receiveMoney(property.getRent() * multiplier);
+        System.out.println("$" + amount + " paid to " + property.getOwner());
+        property.getOwner().receiveMoney(amount);
     }
 
     public ArrayList<PropertySpace> getPropertiesOwnedOfSet(int setId) {
@@ -144,10 +148,19 @@ public class Player {
     }
 
     public void mortgageProperty(String propertyName) {
-        PropertySpace property = getOwnedPropertyByName(propertyName);
+        Space space = Board.spaceSearch(propertyName);
+        if (!(space instanceof PropertySpace property)) {
+            System.out.println(space + " is not a property");
+            return;
+        }
 
-        if (property == null) {
-            System.out.println(getName() + " does not own " + propertyName);
+        if (property.getOwner() != this) {
+            System.out.println(getName() + " does not own " + property);
+            return;
+        }
+
+        if (property.isMortgaged()) {
+            System.out.println(property + " is already mortgaged");
             return;
         }
 
@@ -158,10 +171,19 @@ public class Player {
     }
 
     public void unmortgageProperty(String propertyName) {
-        PropertySpace property = getOwnedPropertyByName(propertyName);
+        Space space = Board.spaceSearch(propertyName);
+        if (!(space instanceof PropertySpace property)) {
+            System.out.println(space + " is not a property");
+            return;
+        }
 
-        if (property == null) {
+        if (property.getOwner() != this) {
             System.out.println(name + " does not own " + propertyName);
+            return;
+        }
+
+        if (!property.isMortgaged()) {
+            System.out.println(property + " is not mortgaged");
             return;
         }
 
@@ -172,13 +194,20 @@ public class Player {
         property.verifyRentLevel(true);
     }
 
-    public PropertySpace getOwnedPropertyByName(String propertyName) {
+    public void bankrupt(Player bankrupter) {
         for (PropertySpace property : properties) {
-            if (property.getName().equals(propertyName)) {
-                return property;
+            if (property.getSetId() != 8 && property.getRentLevel() > 1) {
+                if (property.getRentLevel() == 6) {
+                    Board.hotels++;
+                } else {
+                    Board.houses += property.getRentLevel() - 1;
+                }
+                receiveMoney((property.getRentLevel() - 1) * ((property.getSetId() / 2) + 1) * 50);
             }
+            property.setRentLevel(0);
+            property.setOwner(bankrupter);
+            property.verifyRentLevel(true);
         }
-        return null;
     }
 
     public boolean spendMoney(int amount) {
@@ -193,13 +222,30 @@ public class Player {
         money += amount;
     }
 
+    public void addProperty(PropertySpace property) {
+        properties.add(property);
+    }
+
+    public void removeProperty(PropertySpace property) {
+        for (int i = 0; i < properties.size(); i++) {
+            if (property == properties.get(i)) {
+                properties.remove(i);
+                return;
+            }
+        }
+    }
+
     public int getMoney() { return money; }
 
     public String getName() { return name; }
 
     public int getPosition() { return position; }
 
+    public int getCurrentRoll() { return currentRoll; }
+
     public int getJailTurnsRemaining() { return jailTurnsRemaining; }
+
+    public ArrayList<PropertySpace> getProperties() { return properties; }
 
     public void setGetOutOfJailFreeCards(int getOutOfJailFreeCards) {
         this.getOutOfJailFreeCards = getOutOfJailFreeCards;
@@ -212,7 +258,6 @@ public class Player {
     public int getGetOutOfJailFreeCards() { return getOutOfJailFreeCards; }
 
     public void setInJail(boolean inJail) {
-        System.out.println(name + " is in jail");
         this.inJail = inJail;
         jailTurnsRemaining = inJail ? 3 : 0;
         position = 10; // jail

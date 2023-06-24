@@ -30,9 +30,8 @@
   },
   {
     "description": "Go back three spaces.",
-    "type": "advance_nearest",
-    "multiplier": 1,
-    "target": [37]
+    "type": "advance",
+    "target": 37
   },
   {
     "description": "Advance to the next railroad. If owned, pay twice the rent.",

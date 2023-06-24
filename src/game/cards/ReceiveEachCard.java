@@ -15,6 +15,9 @@ public class ReceiveEachCard extends Card implements CardInterface {
     @Override
     public void cardAction(Player player) {
         for (Player opponent : Game.players) {
+            if (opponent == player) {
+                continue;
+            }
             if (!opponent.spendMoney(amount)) {
                 System.out.println(opponent + " does not have enough money");
                 opponent.notEnoughMoney(amount);

@@ -107,11 +107,11 @@ public class Board {
                     card = new AdvanceCard(description, type, target);
                 }
                 case "advance_nearest" -> {
-                    int multiplier = (int) currentCard.get("multiplier");
+                    int multiplier = (int) (long) currentCard.get("multiplier");
                     JSONArray targets = (JSONArray) currentCard.get("target");
                     int[] intTargets = new int[targets.size()];
                     for (int j = 0; j < targets.size(); j++) {
-                        intTargets[j] = (int) targets.get(j);
+                        intTargets[j] = (int) (long) targets.get(j);
                     }
                     card = new AdvanceNearestCard(description, type, multiplier, intTargets);
                 }
